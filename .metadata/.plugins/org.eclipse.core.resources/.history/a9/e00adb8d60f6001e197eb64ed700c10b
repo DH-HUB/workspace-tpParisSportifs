@@ -1,0 +1,5 @@
+package fr.metz.mns.tp.tpParisSportifs.controllers;
+
+public class CoteController {
+
+}

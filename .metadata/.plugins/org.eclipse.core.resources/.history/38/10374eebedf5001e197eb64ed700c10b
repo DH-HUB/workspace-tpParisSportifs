@@ -1,0 +1,33 @@
+package fr.metz.mns.tp.tpParisSportifs.repositories;
+
+import java.util.Optional;
+
+import org.hibernate.mapping.List;
+
+import fr.metz.mns.tp.tpParisSportifs.models.Parieur;
+
+public class ParieurRepository {
+
+	public java.util.List<Parieur> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Optional<Parieur> findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Parieur save(Parieur parieur) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+}

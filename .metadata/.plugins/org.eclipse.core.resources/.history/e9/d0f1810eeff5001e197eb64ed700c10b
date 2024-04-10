@@ -1,0 +1,84 @@
+package fr.metz.mns.tp.tpParisSportifs.services;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import fr.metz.mns.tp.tpParisSportifs.models.Pari;
+import fr.metz.mns.tp.tpParisSportifs.models.Parieur;
+import fr.metz.mns.tp.tpParisSportifs.repositories.ParieurRepository;
+
+@Service
+public class ParieurService {
+
+	private final PariRepository pariRepository;
+
+    @Autowired
+    public ParieurService(PariRepository pariRepository) {
+        this.pariRepository = pariRepository;
+    }
+
+    // Récupérer tous les parieurs
+    public List<Parieur> getAllParieurs() {
+        return parieurRepository.findAll();
+    }
+
+    // Trouver un parieur par ID
+    public Optional<Parieur> getParieurById(Long id) {
+        return parieurRepository.findById(id);
+    }
+
+    // Enregistrer un nouveau parieur
+    public Parieur saveParieur(Parieur parieur) {
+        // Ici, vous pouvez ajouter une logique supplémentaire avant de sauvegarder le parieur
+        return parieurRepository.save(parieur);
+    }
+
+    // Mettre à jour un parieur existant
+    public Parieur updateParieur(Long id, Parieur parieurDetails) {
+        // Trouver le parieur existant et le mettre à jour avec les détails fournis
+        // Cette méthode pourrait inclure des vérifications pour s'assurer que l'ID existe
+        return parieurRepository.save(parieurDetails);
+    }
+
+    // Supprimer un parieur
+    public void deleteParieur(Long id) {
+        // Ici, vous pouvez ajouter une logique supplémentaire pour les vérifications avant la suppression
+        parieurRepository.deleteById(id);
+    }
+
+    // Rechercher des parieurs par nom
+    public List<Parieur> searchParieursByName(String name) {
+        // Implémenter une recherche personnalisée dans le repository
+        return parieurRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    // Authentifier un parieur
+    public Optional<Parieur> authenticateParieur(String email, String password) {
+        // Implémenter l'authentification, possiblement en utilisant Spring Security
+        // Renvoyer le parieur si les identifiants sont corrects
+        return Optional.empty(); // Exemple de placeholder
+    }
+
+    // Obtenir l'historique des paris d'un parieur
+    public List<Pari> getHistoriqueParis(Long parieurId) {
+        // Trouver les paris associés au parieur et les renvoyer
+        return new ArrayList<>(); // Exemple de placeholder
+    }
+
+    // Obtenir des statistiques sur les parieurs
+    public StatistiquesParieur getStatistiquesParieur(Long parieurId) {
+        Double totalMises = pariRepository.findTotalMisesByParieurId(parieurId);
+        Double totalGains = pariRepository.findTotalGainsByParieurId(parieurId);
+        int nombreParis = pariRepository.countParisByParieurId(parieurId);
+
+        // S'assurer que les valeurs ne sont pas nulles
+        totalMises = totalMises != null ? totalMises : 0.0;
+        totalGains = totalGains != null ? totalGains : 0.0;
+
+        return new StatistiquesParieur(totalMises, totalGains, nombreParis);
+    }
+}

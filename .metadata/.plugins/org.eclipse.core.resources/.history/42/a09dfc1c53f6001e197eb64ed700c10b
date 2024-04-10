@@ -1,0 +1,44 @@
+package fr.metz.mns.tp.tpParisSportifs.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import fr.metz.mns.tp.tpParisSportifs.repositories.EvenementRepository;
+import jakarta.persistence.EntityNotFoundException;
+
+@Service
+public class EvenementService {
+
+    private final EvenementService evenementRepository;
+
+    @Autowired
+    public EvenementService(EvenementRepository EvenementRepository) {
+        this.evenementRepository = evenementRepository;
+    }
+
+    public List<Event> getAllEvents() {
+        return eventRepository.findAll();
+    }
+
+    public Event getEventById(int id) {
+        return eventRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Event not found with id: " + id));
+    }
+
+    public Event createEvent(Event event) {
+        // Valider l'événement
+        return eventRepository.save(event);
+    }
+
+    public Event updateEvent(int id, Event eventDetails) {
+        Event event = getEventById(id);
+        // MAJ des champs de l'événement
+        event.setType(eventDetails.getType());
+        event.setDate(eventDetails.getDate());
+        return eventRepository.save(event);
+    }
+
+    public void deleteEvent(int id) {
+        eventRepository.deleteById(id);
+    }
+}

@@ -1,0 +1,38 @@
+package fr.metz.mns.tp.tpParisSportifs.services;
+
+import fr.metz.mns.tp.tpParisSportifs.models.Parieur;
+import fr.metz.mns.tp.tpParisSportifs.repositories.ParieurRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ParieurService {
+
+    private final ParieurRepository parieurRepository;
+
+    @Autowired
+    public ParieurService(ParieurRepository parieurRepository) {
+        this.parieurRepository = parieurRepository;
+    }
+
+    public List<Parieur> getAllParieurs() {
+        return parieurRepository.findAll();
+    }
+
+    public Optional<Parieur> getParieurById(Long id) {
+        return parieurRepository.findById(id);
+    }
+
+    public Parieur saveParieur(Parieur parieur) {
+        return parieurRepository.save(parieur);
+    }
+
+    public void deleteParieur(Long id) {
+        parieurRepository.deleteById(id);
+    }
+    
+    // Autres méthodes utiles pour la gestion des parieurs
+}

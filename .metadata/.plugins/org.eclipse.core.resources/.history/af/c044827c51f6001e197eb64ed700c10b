@@ -1,0 +1,39 @@
+package fr.metz.mns.tp.tpParisSportifs.services;
+
+@Service
+public class MatchService {
+
+    private final MatchRepository matchRepository;
+
+    @Autowired
+    public MatchService(MatchRepository matchRepository) {
+        this.matchRepository = matchRepository;
+    }
+
+    public List<Match> getAllMatches() {
+        return matchRepository.findAll();
+    }
+
+    public Match getMatchById(int id) {
+        return matchRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Match not found with id: " + id));
+    }
+
+    public Match createMatch(Match match) {
+        // Valider le match si nécessaire
+        return matchRepository.save(match);
+    }
+
+    public Match updateMatch(int id, Match matchDetails) {
+        Match match = getMatchById(id);
+        // Mise à jour des champs de match
+        match.setEquipeA(matchDetails.getEquipeA());
+        match.setEquipeB(matchDetails.getEquipeB());
+        match.setDateMatch(matchDetails.getDateMatch());
+        return matchRepository.save(match);
+    }
+
+    public void deleteMatch(int id) {
+        matchRepository.deleteById(id);
+    }
+}

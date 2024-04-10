@@ -1,0 +1,18 @@
+package fr.metz.mns.tp.tpParisSportifs.repositories;
+
+import org.hibernate.mapping.List;
+
+import fr.metz.mns.tp.tpParisSportifs.models.Pari;
+
+public interface PariRepository {
+
+	List findAll();
+
+	Object findById(int id);
+
+	Pari save(Pari pari);
+
+	void deleteById(int id);
+	
+
+}

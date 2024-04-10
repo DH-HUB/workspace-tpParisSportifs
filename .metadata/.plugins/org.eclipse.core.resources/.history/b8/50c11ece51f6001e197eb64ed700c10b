@@ -1,0 +1,16 @@
+package fr.metz.mns.tp.tpParisSportifs.repositories;
+
+import java.util.Date;
+
+import org.hibernate.mapping.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import fr.metz.mns.tp.tpParisSportifs.models.Match;
+
+public interface MatchRepository extends JpaRepository<Match, Integer> {
+    // Recherche les matchs par date
+    List<Match> findByDateMatch(Date date);
+
+    // Exemple de requête pour trouver les matchs impliquant une certaine équipe
+    List<Match> findByEquipeAOrEquipeB(String equipeA, String equipeB);
+}

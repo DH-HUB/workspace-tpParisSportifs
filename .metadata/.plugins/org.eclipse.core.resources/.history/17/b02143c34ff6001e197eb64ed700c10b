@@ -1,0 +1,49 @@
+package fr.metz.mns.tp.tpParisSportifs.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import fr.metz.mns.tp.tpParisSportifs.models.Pari;
+import fr.metz.mns.tp.tpParisSportifs.repositories.PariRepository;
+import jakarta.persistence.EntityNotFoundException;
+
+@Service
+public class PariService {
+
+    private final PariRepository pariRepository;
+
+    @Autowired
+    public PariService(PariRepository pariRepository) {
+        this.pariRepository = pariRepository;
+    }
+
+    public List<Pari> getAllParis() {
+        return (List<Pari>) pariRepository.findAll();
+    }
+
+    public Pari getPariById(int id) {
+        return ((Pari) pariRepository.findById(id))
+                .orElseThrow(() -> new EntityNotFoundException("Pari not found with id: " + id));
+    }
+
+    public Pari createPari(Pari pari) {
+        // Valider et calculer la cote si nécessaire
+        return pariRepository.save(pari);
+    }
+
+    public Pari updatePari(int id, Pari pariDetails) {
+        Pari pari = getPariById(id);
+        // Mise à jour des champs de pari
+        pari.setMise(pariDetails.getMise());
+        pari.setStatut(pariDetails.getStatut());
+        pari.setDatePari(pariDetails.getDatePari());
+        // Plus de champs selon vos besoins
+        return pariRepository.save(pari);
+    }
+
+    public void deletePari(int id) {
+        pariRepository.deleteById(id);
+    }
+}

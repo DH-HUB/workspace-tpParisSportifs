@@ -1,0 +1,10 @@
+package fr.metz.mns.tp.tpParisSportifs.repositories;
+
+import org.hibernate.mapping.List;
+
+public interface PariRepository {
+
+	List findAll();
+	
+
+}

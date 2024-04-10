@@ -1,0 +1,17 @@
+package fr.metz.mns.tp.tpParisSportifs.repositories;
+
+import org.hibernate.mapping.List;
+
+public class ParieurRepository {
+
+	public List findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

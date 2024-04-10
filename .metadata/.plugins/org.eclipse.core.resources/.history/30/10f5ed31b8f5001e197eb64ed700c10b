@@ -1,0 +1,33 @@
+package fr.metz.mns.tp.tpParisSportifs.services;
+
+
+
+@Service
+public class ParieurService {
+
+    private final ParieurRepository parieurRepository;
+
+    @Autowired
+    public ParieurService(ParieurRepository parieurRepository) {
+        this.parieurRepository = parieurRepository;
+    }
+
+    public List<Parieur> listAllParieurs() {
+        return parieurRepository.findAll();
+    }
+
+    public Parieur getParieurById(int id) {
+        return parieurRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Parieur not found"));
+    }
+
+    public Parieur saveParieur(Parieur parieur) {
+        return parieurRepository.save(parieur);
+    }
+
+    public void deleteParieur(int id) {
+        parieurRepository.deleteById(id);
+    }
+
+    // ... Autres méthodes métier comme mise à jour, etc.
+}

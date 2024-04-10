@@ -1,0 +1,15 @@
+package fr.metz.mns.tp.tpParisSportifs.controllers;
+
+@RestController
+@RequestMapping("/matches")
+public class MatchController {
+
+    private final MatchService matchService;
+
+    @Autowired
+    public MatchController(MatchService matchService) {
+        this.matchService = matchService;
+    }
+
+    // FIXME Points de terminaison pour obtenir des matchs, créer de nouveaux matchs.
+}

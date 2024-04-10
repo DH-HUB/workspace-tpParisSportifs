@@ -1,0 +1,6 @@
+package fr.metz.mns.tp.tpParisSportifs.repositories;
+
+public interface CoteRepository extends JpaRepository<Cote, Integer> {
+    // Trouve les cotes par valeur
+    List<Cote> findByValeur(Float valeur);
+}

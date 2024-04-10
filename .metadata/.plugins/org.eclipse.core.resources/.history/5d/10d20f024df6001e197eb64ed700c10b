@@ -1,0 +1,47 @@
+package fr.metz.mns.tp.tpParisSportifs.repositories;
+
+import fr.metz.mns.tp.tpParisSportifs.models.Parieur;
+
+import org.apache.el.stream.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ParieurRepository extends JpaRepository<Parieur, Long> {
+    
+
+	public default java.util.List<Parieur> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public default java.util.Optional<Parieur> findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public default Parieur save(Parieur parieur) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public default void deleteById(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public default java.util.List<Parieur> findByNameContainingIgnoreCase(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//	public interface ParieurRepository extends JpaRepository<Parieur, Long> {
+//	    // Exemple de méthode hypothétique pour calculer le total des mises
+//	    @Query("SELECT SUM(p.mise) FROM Pari p WHERE p.parieur.id = :parieurId")
+//	    double findTotalMisesByParieurId(Long parieurId);
+//
+//	    // Autres requêtes personnalisées pour totalGains et nombreParis...
+//	}
+
+
+}

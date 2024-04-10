@@ -1,0 +1,55 @@
+package fr.metz.mns.tp.tpParisSportifs.models;
+
+
+import org.springframework.data.annotation.Id;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.OneToOne;
+
+@Entity
+public class Cote {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private float valeur;
+
+    // Pour la relation bi-directionnelle avec Pari
+    @OneToOne(mappedBy = "cote")
+    private Pari pari;
+
+	public Long getId() {
+		return id;
+	}
+	
+	private Match match;
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public float getValeur() {
+		return valeur;
+	}
+
+	public void setValeur(float valeur) {
+		this.valeur = valeur;
+	}
+
+	public Pari getPari() {
+		return pari;
+	}
+
+	public void setPari(Pari pari) {
+		this.pari = pari;
+	}
+
+	public Match getMatch() {
+		return match;
+	}
+
+	
+    
+}

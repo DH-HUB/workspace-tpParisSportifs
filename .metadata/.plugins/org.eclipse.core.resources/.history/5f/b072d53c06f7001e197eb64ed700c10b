@@ -1,0 +1,16 @@
+spring.application.name=tpParisSportifs
+
+
+
+
+spring.datasource.url=jdbc:postgresql://flora.db.elephantsql.com:5432/shvzdcpy
+spring.datasource.username=shvzdcpy
+spring.datasource.password=dAHKndYj8anYerrhio6qoHhU1ihjfrO1
+
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+

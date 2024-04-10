@@ -1,0 +1,15 @@
+package fr.metz.mns.tp.tpParisSportifs;
+
+public class BusinessException extends RuntimeException {
+
+    public BusinessException(String message) {
+        super(message);
+    }
+
+    // Vous pouvez surcharger le constructeur pour inclure d'autres informations comme des codes d'erreur, etc.
+    public BusinessException(String message, Throwable cause) {
+        super(message, cause);
+    }
+    
+    // Si vous souhaitez ajouter un code d'erreur spécifique ou d'autres propriétés, vous pouvez le faire ici.
+}

@@ -1,0 +1,20 @@
+package fr.metz.mns.tp.tpParisSportifs.models;
+
+public class Evenement {
+
+	public Object getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setType(Object type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

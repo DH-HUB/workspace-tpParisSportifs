@@ -1,0 +1,10 @@
+package fr.metz.mns.tp.tpParisSportifs.models;
+
+public class Evenement {
+
+	public Object getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

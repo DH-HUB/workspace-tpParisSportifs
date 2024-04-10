@@ -1,0 +1,45 @@
+package fr.metz.mns.tp.tpParisSportifs.services;
+
+import org.hibernate.mapping.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import fr.metz.mns.tp.tpParisSportifs.models.Cote;
+import fr.metz.mns.tp.tpParisSportifs.repositories.CoteRepository;
+import jakarta.persistence.EntityNotFoundException;
+
+@Service
+public class CoteService {
+
+    private final CoteRepository coteRepository;
+
+    @Autowired
+    public CoteService(CoteRepository coteRepository) {
+        this.coteRepository = coteRepository;
+    }
+
+    public java.util.List<Cote> getAllCotes() {
+        return coteRepository.findAll();
+    }
+
+    public Cote getCoteById(int id) {
+        return coteRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Cote not found with id: " + id));
+    }
+
+    public Cote createCote(Cote cote) {
+        // Valide cote 
+        return coteRepository.save(cote);
+    }
+
+    public Cote updateCote(int id, Cote coteDetails) {
+        Cote cote = getCoteById(id);
+        // MAJ des champs de cote
+        cote.setValeur(coteDetails.getValeur());
+        return coteRepository.save(cote);
+    }
+
+    public void deleteCote(int id) {
+        coteRepository.deleteById(id);
+    }
+}

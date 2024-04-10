@@ -1,0 +1,26 @@
+package fr.metz.mns.tp.tpParisSportifs.controllers;
+
+@RestController
+@RequestMapping("/paris")
+public class PariController {
+
+    private final PariService pariService;
+
+    @Autowired
+    public PariController(PariService pariService) {
+        this.pariService = pariService;
+    }
+
+    @GetMapping
+    public List<Pari> getAllParis() {
+        return pariService.listAllParis();
+    }
+
+    @GetMapping("/{id}")
+    public Pari getPariById(@PathVariable int id) {
+        return pariService.getPariById(id);
+    }
+
+    // FIXME Points de terminaison pour placer un pari
+}
+

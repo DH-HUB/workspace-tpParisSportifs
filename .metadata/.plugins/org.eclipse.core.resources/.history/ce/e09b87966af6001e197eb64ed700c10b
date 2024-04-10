@@ -1,0 +1,10 @@
+spring.application.name=tpParisSportifs
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/
+spring.datasource.username=
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+

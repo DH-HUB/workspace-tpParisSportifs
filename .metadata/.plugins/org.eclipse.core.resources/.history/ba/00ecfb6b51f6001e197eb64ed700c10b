@@ -1,0 +1,11 @@
+package fr.metz.mns.tp.tpParisSportifs.repositories;
+
+import org.hibernate.mapping.List;
+
+public interface MatchRepository {
+
+	List findAll();
+
+	Object findById(int id);
+
+}

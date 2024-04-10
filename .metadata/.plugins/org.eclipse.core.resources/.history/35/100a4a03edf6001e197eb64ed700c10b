@@ -1,0 +1,70 @@
+package fr.metz.mns.tp.tpParisSportifs.services;
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import fr.metz.mns.tp.tpParisSportifs.models.Cote;
+import fr.metz.mns.tp.tpParisSportifs.models.Match;
+import fr.metz.mns.tp.tpParisSportifs.models.Pari;
+import fr.metz.mns.tp.tpParisSportifs.repositories.PariRepository;
+import jakarta.persistence.EntityNotFoundException;
+
+@Service
+public class PariService {
+
+    private final PariRepository pariRepository;
+    private final MatchService matchService;
+    private final CoteService coteService;
+
+    @Autowired
+    public PariService(PariRepository pariRepository, MatchService matchService, CoteService coteService) {
+        this.pariRepository = pariRepository;
+        this.matchService = matchService;
+        this.coteService = coteService;
+    }
+
+    public List<Pari> getAllParis() {
+        return pariRepository.findAll();
+    }
+
+    public Pari getPariById(Long id) {
+        return pariRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Pari introuvable avec l'identifiant :" + id));
+    }
+
+    @Transactional
+    public Pari createPari(Pari pari) {
+        // FIXME intégrer de la logique pour interagir avec Match et Cote
+        // récupérer un match et une cote, et les associer au pari.
+        Match match = matchService.getMatchById(pari.getMatch().getId());
+        Cote cote = coteService.getCoteById(pari.getCote().getId());
+        pari.setMatch(match);
+        pari.setCote(cote);
+
+        // Applique les règles métier pour le pari
+
+        return pariRepository.save(pari);
+    }
+
+    @Transactional
+    public Pari updatePari(Long id, Pari pariDetails) {
+        Pari pari = getPariById(id);
+        // MAJ des champs du pari
+        pari.setMise(pariDetails.getMise());
+        pari.setStatut(pariDetails.getStatut());
+       
+
+        return pariRepository.save(pari);
+    }
+
+    @Transactional
+    public void deletePari(Long id) {
+        pariRepository.deleteById(id);
+    }
+
+
+}

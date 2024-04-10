@@ -1,0 +1,26 @@
+package fr.metz.mns.tp.tpParisSportifs.models;
+
+package fr.metz.mns.tp.tpParisSportifs.models;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
+
+@Entity
+public class Parieur {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nom;
+    private String prenom;
+    
+    @Temporal(TemporalType.DATE)
+    private Date dateInscription;
+
+    // Pour la relation avec les paris (si un parieur peut avoir plusieurs paris)
+    @OneToMany(mappedBy = "parieur")
+    private Set<Pari> paris;
+
+    // Getters et Setters
+}
